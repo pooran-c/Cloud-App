@@ -47,12 +47,15 @@
                     <div class="card mt-1">
                         <div class="card-header"><h5>Lesson {{lesson.order|add:1}}: {{lesson.title}}</h5></div>
                         <div class="card-body">{{lesson.content}}</div>
+
+
                     </div>
                 {% endfor %}
             </div>
             <!-- Task: show questions and choices -->
             <!-- <HINT> Use Bootstrap Collapse to hide exam first, more details could be found here
             https://www.w3schools.com/bootstrap4/bootstrap_collapse.asp-->
+                    
 
             <!--
 
@@ -63,6 +66,23 @@
 
             -->
 
+
+            {{ question.lesson }}
+
+            <button data-toggle="collapse" data-target="#Exam">Exam</button>
+
+
+            <div id="Exam" class="collapse">
+                {% if user.is_authenticated %}
+                
+                    
+                    {{ question }}
+                   
+                    
+                {% else %}
+                    <a class="btn btn-link" href="#">Not registered for Exam</a>
+                {% endif %}
+            </div>
             <!-- <HINT> If user is authenticated, show course exam with a list of question -->
 
             <!-- <HINT> Each example will have many questions -->
