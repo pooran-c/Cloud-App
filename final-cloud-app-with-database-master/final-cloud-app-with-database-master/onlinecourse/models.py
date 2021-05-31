@@ -113,3 +113,8 @@ class Choice(models.Model):
 class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     chocies = models.ManyToManyField(Choice)
+
+
+class Man(models.Model):
+    name = models.CharField(null = False, max_length=100)
+    age = models.IntegerField(null = False)

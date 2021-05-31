@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 # <HINT> Import any new Models here
-from .models import Course, Enrollment, Question, Choice
+from .models import Course, Enrollment, Question, Choice, Man
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
@@ -11,6 +11,7 @@ import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 # Create your views here.
+
 
 
 def registration_request(request):
@@ -83,6 +84,15 @@ class CourseListView(generic.ListView):
                 course.is_enrolled = check_if_enrolled(user, course)
         return courses
 
+class ManListView(generic.ListView):
+    template_name = 'onlinecourse/Man_list.html'
+    context_object_name = 'man_list'
+
+    def get_queryset(self):
+        mans = Man.objects.all()
+        for i in mans:
+            print(i.name)
+        return mans
 
 class CourseDetailView(generic.DetailView):    
     model = Course
